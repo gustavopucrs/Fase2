@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendamento e Cadastro – PataFeliz Petshop</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- CSS customizado -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ACESSIBILIDADE: Pular para conteúdo principal -->
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+  <!-- BANNER DE DATA/HORA -->
+  <div id="relogio-banner" aria-live="polite" aria-label="Data e hora atuais">Carregando...</div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-patafeliz" aria-label="Menu principal de navegação">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-heart-fill me-2" aria-hidden="true"></i>PataFeliz
+      </a>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+              aria-controls="menuPrincipal" aria-expanded="false"
+              aria-label="Abrir menu de navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuPrincipal">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house" aria-hidden="true"></i> Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="acessorios.html"><i class="bi bi-bag" aria-hidden="true"></i> Acessórios</a></li>
+          <li class="nav-item"><a class="nav-link" href="racoes.html"><i class="bi bi-cup" aria-hidden="true"></i> Rações</a></li>
+          <li class="nav-item"><a class="nav-link" href="higiene.html"><i class="bi bi-droplet" aria-hidden="true"></i> Higiene</a></li>
+          <li class="nav-item"><a class="nav-link" href="servicos.html"><i class="bi bi-scissors" aria-hidden="true"></i> Serviços</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="cadastro.html"><i class="bi bi-calendar-check" aria-hidden="true"></i> Agendar</a></li>
+        </ul>
+        <button id="btn-contraste" class="btn btn-sm btn-outline-light ms-3"
+                onclick="toggleAltoContraste()"
+                aria-pressed="false"
+                title="Ativar alto contraste">☀️ Alto Contraste</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main id="conteudo-principal" class="container py-5">
+
+    <h1 class="form-titulo">
+      <i class="bi bi-calendar-check me-2" aria-hidden="true"></i>
+      Cadastro e Agendamento
+    </h1>
+    <p class="text-muted mb-4 texto-acessivel">
+      Preencha o formulário abaixo para cadastrar seu pet e agendar um serviço.
+      Campos marcados com <abbr title="obrigatório">*</abbr> são obrigatórios.
+    </p>
+
+    <!-- MENSAGEM DE ERRO (oculta até acionada por JS) -->
+    <div id="erros-formulario" class="alert alert-danger" role="alert" aria-live="assertive" style="display:none;">
+      <strong>Por favor, corrija os erros abaixo:</strong>
+    </div>
+
+    <!-- MENSAGEM DE SUCESSO (oculta até acionada por JS) -->
+    <div id="sucesso-formulario" class="alert alert-success text-center py-5" role="alert" aria-live="assertive" style="display:none;">
+      <i class="bi bi-check-circle-fill fs-1 text-success mb-3 d-block" aria-hidden="true"></i>
+      <h2 class="h4 fw-bold">Agendamento realizado com sucesso!</h2>
+      <p class="texto-acessivel">Entraremos em contato pelo telefone ou e-mail informado para confirmar o horário.</p>
+      <p>Obrigado por escolher a <strong>PataFeliz Petshop!</strong> 🐾</p>
+      <a href="index.html" class="btn btn-patafeliz-verde mt-2">Voltar para a Início</a>
+    </div>
+
+    <!-- ==================== FORMULÁRIO ==================== -->
+    <form id="form-cadastro" onsubmit="validarFormulario(event)" novalidate aria-label="Formulário de cadastro e agendamento">
+
+      <!-- ---- SEÇÃO 1: DADOS DO CLIENTE ---- -->
+      <fieldset class="form-secao">
+        <legend class="form-secao-titulo">
+          <i class="bi bi-person-fill me-2" aria-hidden="true"></i>Dados do Cliente
+        </legend>
+
+        <div class="row g-3">
+
+          <!-- Nome completo -->
+          <div class="col-md-6">
+            <label for="nome" class="form-label">Nome completo <abbr title="obrigatório">*</abbr></label>
+            <input type="text" class="form-control" id="nome" name="nome"
+                   placeholder="Ex.: João da Silva"
+                   required minlength="3"
+                   aria-describedby="nome-ajuda"
+                   autocomplete="name">
+            <div id="nome-ajuda" class="form-text">Informe seu nome e sobrenome.</div>
+          </div>
+
+          <!-- CPF -->
+          <div class="col-md-3">
+            <label for="cpf" class="form-label">CPF <abbr title="obrigatório">*</abbr></label>
+            <input type="text" class="form-control" id="cpf" name="cpf"
+                   placeholder="000.000.000-00"
+                   required maxlength="14"
+                   oninput="mascaraCpf(this)"
+                   aria-describedby="cpf-ajuda"
+                   autocomplete="off">
+            <div id="cpf-ajuda" class="form-text">Digite somente os números.</div>
+            <div class="invalid-feedback">CPF deve estar no formato 000.000.000-00.</div>
+          </div>
+
+          <!-- Data de nascimento -->
+          <div class="col-md-3">
+            <label for="nascimento" class="form-label">Data de Nascimento <abbr title="obrigatório">*</abbr></label>
+            <input type="date" class="form-control" id="nascimento" name="nascimento"
+                   required
+                   aria-describedby="nasc-ajuda">
+            <div id="nasc-ajuda" class="form-text">Sua data de nascimento.</div>
+          </div>
+
+          <!-- Sexo -->
+          <div class="col-md-4">
+            <label class="form-label">Sexo <abbr title="obrigatório">*</abbr></label>
+            <div role="group" aria-labelledby="label-sexo">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sexo" id="sexoM" value="masculino" required>
+                <label class="form-check-label" for="sexoM">Masculino</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sexo" id="sexoF" value="feminino">
+                <label class="form-check-label" for="sexoF">Feminino</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sexo" id="sexoO" value="outro">
+                <label class="form-check-label" for="sexoO">Prefiro não informar</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Telefone -->
+          <div class="col-md-4">
+            <label for="telefone" class="form-label">Telefone/WhatsApp <abbr title="obrigatório">*</abbr></label>
+            <input type="tel" class="form-control" id="telefone" name="telefone"
+                   placeholder="(51) 99999-8888"
+                   required maxlength="15"
+                   oninput="mascaraTelefone(this)"
+                   aria-describedby="tel-ajuda"
+                   autocomplete="tel">
+            <div id="tel-ajuda" class="form-text">Com DDD. Será usado para confirmação.</div>
+            <div class="invalid-feedback">Formato esperado: (51) 99999-8888.</div>
+          </div>
+
+          <!-- E-mail -->
+          <div class="col-md-4">
+            <label for="email" class="form-label">E-mail <abbr title="obrigatório">*</abbr></label>
+            <input type="email" class="form-control" id="email" name="email"
+                   placeholder="seuemail@exemplo.com"
+                   required
+                   aria-describedby="email-ajuda"
+                   autocomplete="email">
+            <div id="email-ajuda" class="form-text">Enviaremos a confirmação neste e-mail.</div>
+          </div>
+
+          <!-- Endereço -->
+          <div class="col-md-8">
+            <label for="endereco" class="form-label">Endereço completo <abbr title="obrigatório">*</abbr></label>
+            <input type="text" class="form-control" id="endereco" name="endereco"
+                   placeholder="Rua, número, bairro"
+                   required
+                   autocomplete="street-address">
+          </div>
+
+          <!-- CEP -->
+          <div class="col-md-4">
+            <label for="cep" class="form-label">CEP <abbr title="obrigatório">*</abbr></label>
+            <input type="text" class="form-control" id="cep" name="cep"
+                   placeholder="00000-000"
+                   required maxlength="9"
+                   autocomplete="postal-code">
+          </div>
+
+          <!-- Cidade -->
+          <div class="col-md-4">
+            <label for="cidade" class="form-label">Cidade <abbr title="obrigatório">*</abbr></label>
+            <input type="text" class="form-control" id="cidade" name="cidade"
+                   placeholder="Ex.: Canoas"
+                   required
+                   autocomplete="address-level2">
+          </div>
+
+          <!-- Estado -->
+          <div class="col-md-2">
+            <label for="estado" class="form-label">Estado <abbr title="obrigatório">*</abbr></label>
+            <select class="form-select" id="estado" name="estado" required aria-label="Selecione o estado">
+              <option value="" disabled selected>UF</option>
+              <option value="RS">RS</option>
+              <option value="SC">SC</option>
+              <option value="PR">PR</option>
+              <option value="SP">SP</option>
+              <option value="RJ">RJ</option>
+              <option value="MG">MG</option>
+              <option value="outros">Outros</option>
+            </select>
+          </div>
+
+          <!-- Como conheceu -->
+          <div class="col-md-6">
+            <label for="como-conheceu" class="form-label">Como nos conheceu?</label>
+            <select class="form-select" id="como-conheceu" name="como_conheceu" aria-label="Selecione como conheceu a PataFeliz">
+              <option value="" disabled selected>Selecione uma opção</option>
+              <option value="google">Pesquisa no Google</option>
+              <option value="instagram">Instagram</option>
+              <option value="indicacao">Indicação de amigo/familiar</option>
+              <option value="passando">Passei em frente à loja</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+
+        </div>
+      </fieldset>
+
+      <!-- ---- SEÇÃO 2: DADOS DO PET ---- -->
+      <fieldset class="form-secao">
+        <legend class="form-secao-titulo">
+          <i class="bi bi-paw-fill me-2" aria-hidden="true"></i>Dados do Pet
+        </legend>
+
+        <div class="row g-3">
+
+          <!-- Nome do pet -->
+          <div class="col-md-4">
+            <label for="pet-nome" class="form-label">Nome do pet <abbr title="obrigatório">*</abbr></label>
+            <input type="text" class="form-control" id="pet-nome" name="pet_nome"
+                   placeholder="Ex.: Rex"
+                   required
+                   aria-describedby="pet-nome-ajuda">
+            <div id="pet-nome-ajuda" class="form-text">Nome pelo qual o pet é chamado.</div>
+          </div>
+
+          <!-- Espécie -->
+          <div class="col-md-4">
+            <label for="pet-especie" class="form-label">Espécie <abbr title="obrigatório">*</abbr></label>
+            <select class="form-select" id="pet-especie" name="pet_especie" required aria-label="Selecione a espécie do pet">
+              <option value="" disabled selected>Selecione</option>
+              <option value="cao">Cão</option>
+              <option value="gato">Gato</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+
+          <!-- Raça -->
+          <div class="col-md-4">
+            <label for="pet-raca" class="form-label">Raça <abbr title="obrigatório">*</abbr></label>
+            <input type="text" class="form-control" id="pet-raca" name="pet_raca"
+                   placeholder="Ex.: Golden Retriever"
+                   required
+                   aria-describedby="pet-raca-ajuda">
+            <div id="pet-raca-ajuda" class="form-text">Caso não saiba, informe "SRD" (sem raça definida).</div>
+          </div>
+
+          <!-- Idade -->
+          <div class="col-md-3">
+            <label for="pet-idade" class="form-label">Idade (anos) <abbr title="obrigatório">*</abbr></label>
+            <input type="number" class="form-control" id="pet-idade" name="pet_idade"
+                   placeholder="Ex.: 3"
+                   min="0" max="30" required
+                   aria-describedby="pet-idade-ajuda">
+            <div id="pet-idade-ajuda" class="form-text">Informe 0 para filhotes com menos de 1 ano.</div>
+          </div>
+
+          <!-- Porte -->
+          <div class="col-md-3">
+            <label for="pet-porte" class="form-label">Porte <abbr title="obrigatório">*</abbr></label>
+            <select class="form-select" id="pet-porte" name="pet_porte" required aria-label="Selecione o porte do pet">
+              <option value="" disabled selected>Selecione</option>
+              <option value="pequeno">Pequeno (até 10 kg)</option>
+              <option value="medio">Médio (10 a 20 kg)</option>
+              <option value="grande">Grande (acima de 20 kg)</option>
+            </select>
+          </div>
+
+          <!-- Peso aproximado -->
+          <div class="col-md-3">
+            <label for="pet-peso" class="form-label">Peso aproximado (kg)</label>
+            <input type="number" class="form-control" id="pet-peso" name="pet_peso"
+                   placeholder="Ex.: 8.5"
+                   min="0" max="100" step="0.1">
+          </div>
+
+          <!-- Sexo do pet -->
+          <div class="col-md-3">
+            <label for="pet-sexo" class="form-label">Sexo do pet <abbr title="obrigatório">*</abbr></label>
+            <select class="form-select" id="pet-sexo" name="pet_sexo" required aria-label="Selecione o sexo do pet">
+              <option value="" disabled selected>Selecione</option>
+              <option value="macho">Macho</option>
+              <option value="femea">Fêmea</option>
+            </select>
+          </div>
+
+          <!-- Castrado -->
+          <div class="col-md-6">
+            <label class="form-label d-block">Pet castrado?</label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="pet_castrado" id="castradoSim" value="sim">
+              <label class="form-check-label" for="castradoSim">Sim</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="pet_castrado" id="castradoNao" value="nao">
+              <label class="form-check-label" for="castradoNao">Não</label>
+            </div>
+          </div>
+
+          <!-- Vacinas em dia -->
+          <div class="col-md-6">
+            <label class="form-label d-block">Vacinas em dia? <abbr title="obrigatório">*</abbr></label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="pet_vacinas" id="vacinasSim" value="sim" required>
+              <label class="form-check-label" for="vacinasSim">Sim</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="pet_vacinas" id="vacinasNao" value="nao">
+              <label class="form-check-label" for="vacinasNao">Não</label>
+            </div>
+          </div>
+
+          <!-- Observações sobre o pet -->
+          <div class="col-12">
+            <label for="pet-obs" class="form-label">Observações sobre o pet</label>
+            <textarea class="form-control" id="pet-obs" name="pet_observacoes"
+                      rows="3"
+                      placeholder="Ex.: tem medo de secador, é agitado com outros animais, possui alergia a algum produto..."
+                      aria-describedby="obs-ajuda"></textarea>
+            <div id="obs-ajuda" class="form-text">
+              Informe qualquer característica importante que o tosador deve saber.
+            </div>
+          </div>
+
+        </div>
+      </fieldset>
+
+      <!-- ---- SEÇÃO 3: ESCOLHA DO SERVIÇO ---- -->
+      <fieldset class="form-secao">
+        <legend class="form-secao-titulo">
+          <i class="bi bi-scissors me-2" aria-hidden="true"></i>Escolha o Serviço
+        </legend>
+
+        <p class="text-muted texto-acessivel">Selecione o(s) serviço(s) desejado(s):</p>
+
+        <!-- Checkboxes de serviço -->
+        <div class="row g-3 mb-3" role="group" aria-labelledby="label-servicos">
+          <span id="label-servicos" class="visually-hidden">Serviços disponíveis</span>
+
+          <div class="col-md-4">
+            <div class="form-check card p-3 border-success">
+              <input class="form-check-input" type="checkbox" name="servico"
+                     id="servBanho" value="banho"
+                     aria-describedby="desc-banho">
+              <label class="form-check-label fw-bold" for="servBanho">
+                🛁 Banho Simples
+              </label>
+              <p id="desc-banho" class="text-muted small mb-0">
+                A partir de R$ 45,00. Inclui shampoo, condicionador, secagem, unhas e perfume.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-check card p-3 border-success">
+              <input class="form-check-input" type="checkbox" name="servico"
+                     id="servTosaHig" value="tosa_higienica"
+                     aria-describedby="desc-tosa-hig">
+              <label class="form-check-label fw-bold" for="servTosaHig">
+                ✂️ Banho + Tosa Higiênica
+              </label>
+              <p id="desc-tosa-hig" class="text-muted small mb-0">
+                A partir de R$ 65,00. Inclui banho + aparamento higiênico.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-check card p-3 border-success">
+              <input class="form-check-input" type="checkbox" name="servico"
+                     id="servTosaComp" value="tosa_completa"
+                     aria-describedby="desc-tosa-comp">
+              <label class="form-check-label fw-bold" for="servTosaComp">
+                💈 Banho + Tosa Completa
+              </label>
+              <p id="desc-tosa-comp" class="text-muted small mb-0">
+                A partir de R$ 85,00. Inclui banho + tosa com modelagem completa.
+              </p>
+            </div>
+          </div>
+
+        </div>
+        <!-- Mensagem de erro para serviço (oculta até JS acionar) -->
+        <div id="erro-servico" class="text-danger small" role="alert" style="display:none;">
+          Por favor, selecione ao menos um serviço.
+        </div>
+
+        <p class="mt-2">
+          <a href="servicos.html" target="_blank" rel="noopener noreferrer"
+             aria-label="Ver tabela de preços completa (abre em nova aba)">
+            Ver tabela de preços completa
+            <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+          </a>
+        </p>
+      </fieldset>
+
+      <!-- ---- SEÇÃO 4: MÉTODO DE AGENDAMENTO ---- -->
+      <fieldset class="form-secao">
+        <legend class="form-secao-titulo">
+          <i class="bi bi-calendar-event me-2" aria-hidden="true"></i>Agendamento
+        </legend>
+
+        <!-- Método: tele-busca ou entrega no local -->
+        <div class="mb-4" role="group" aria-labelledby="label-metodo">
+          <p id="label-metodo" class="fw-bold">Como você prefere? <abbr title="obrigatório">*</abbr></p>
+
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="metodo"
+                   id="metodoLocal" value="local"
+                   required onchange="toggleEndereco()"
+                   aria-describedby="desc-local">
+            <label class="form-check-label" for="metodoLocal">
+              <strong>Levarei o pet ao petshop</strong>
+            </label>
+            <p id="desc-local" class="text-muted small mb-0">
+              Traga seu pet até nós: Rua das Flores, 123 – Centro – Canoas/RS.
+            </p>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="metodo"
+                   id="metodoTelebusca" value="telebusca"
+                   onchange="toggleEndereco()"
+                   aria-describedby="desc-telebusca">
+            <label class="form-check-label" for="metodoTelebusca">
+              <strong>Tele-busca</strong> (buscamos e entregamos em casa)
+            </label>
+            <p id="desc-telebusca" class="text-muted small mb-0">
+              Taxa já inclusa no preço. Área de atendimento: Canoas e região metropolitana.
+            </p>
+          </div>
+
+          <!-- Mensagem de erro para método (oculta até JS acionar) -->
+          <div id="erro-metodo" class="text-danger small mt-2" role="alert" style="display:none;">
+            Por favor, selecione um método de agendamento.
+          </div>
+        </div>
+
+        <!-- Campo de endereço de busca (mostrado só quando tele-busca é selecionada) -->
+        <div id="bloco-endereco-busca" class="mb-4" style="display:none;">
+          <label for="endereco-busca" class="form-label fw-bold">
+            Endereço para busca/entrega <abbr title="obrigatório">*</abbr>
+          </label>
+          <input type="text" class="form-control" id="endereco-busca" name="endereco_busca"
+                 placeholder="Rua, número, complemento, bairro, cidade"
+                 aria-describedby="end-busca-ajuda">
+          <div id="end-busca-ajuda" class="form-text">
+            Informe o endereço completo onde o pet será buscado e entregue.
+          </div>
+        </div>
+
+        <!-- Data do agendamento -->
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label for="data-agendamento" class="form-label">Data do agendamento <abbr title="obrigatório">*</abbr></label>
+            <input type="date" class="form-control" id="data-agendamento" name="data_agendamento"
+                   required
+                   aria-describedby="data-ajuda">
+            <div id="data-ajuda" class="form-text">
+              Agendamentos com antecedência mínima de 1 dia.
+            </div>
+          </div>
+
+          <!-- Horário do agendamento -->
+          <div class="col-md-4">
+            <label for="horario-agendamento" class="form-label">Horário preferencial <abbr title="obrigatório">*</abbr></label>
+            <select class="form-select" id="horario-agendamento" name="horario_agendamento"
+                    required aria-label="Selecione o horário preferencial">
+              <option value="" disabled selected>Selecione</option>
+              <option value="08:00">08:00</option>
+              <option value="09:00">09:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+            </select>
+          </div>
+
+          <!-- Observações do agendamento -->
+          <div class="col-md-4">
+            <label for="obs-agendamento" class="form-label">Observações do agendamento</label>
+            <textarea class="form-control" id="obs-agendamento" name="obs_agendamento"
+                      rows="3"
+                      placeholder="Ex.: prefiro ser atendido pela profissional Carla..."></textarea>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <!-- ---- SEÇÃO 5: TERMOS E ENVIO ---- -->
+      <fieldset class="form-secao">
+        <legend class="form-secao-titulo">
+          <i class="bi bi-check2-circle me-2" aria-hidden="true"></i>Confirmação
+        </legend>
+
+        <!-- Aceite dos termos -->
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="aceite-termos" name="aceite_termos"
+                 required
+                 aria-describedby="termos-ajuda">
+          <label class="form-check-label" for="aceite-termos">
+            Concordo que os dados fornecidos sejam utilizados pelo PataFeliz Petshop
+            exclusivamente para o cadastro e agendamento de serviços. <abbr title="obrigatório">*</abbr>
+          </label>
+          <div id="termos-ajuda" class="form-text">
+            Seus dados são usados apenas internamente, conforme a LGPD.
+          </div>
+        </div>
+
+        <!-- Aceite de contato via WhatsApp -->
+        <div class="mb-4 form-check">
+          <input type="checkbox" class="form-check-input" id="aceite-whatsapp" name="aceite_whatsapp">
+          <label class="form-check-label" for="aceite-whatsapp">
+            Aceito receber confirmações e lembretes por WhatsApp.
+          </label>
+        </div>
+
+        <!-- Botões -->
+        <div class="d-flex gap-3 flex-wrap">
+          <button type="submit" class="btn btn-patafeliz px-4 py-2" aria-label="Enviar formulário de agendamento">
+            <i class="bi bi-calendar-check me-2" aria-hidden="true"></i>Confirmar Agendamento
+          </button>
+          <button type="reset" class="btn btn-outline-secondary px-4 py-2"
+                  aria-label="Limpar todos os campos do formulário">
+            <i class="bi bi-arrow-counterclockwise me-2" aria-hidden="true"></i>Limpar Formulário
+          </button>
+        </div>
+
+      </fieldset>
+
+    </form>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>PataFeliz Petshop</h5>
+          <p>Cuidando do seu pet com amor desde 2020.</p>
+          <p>
+            <i class="bi bi-telephone me-1" aria-hidden="true"></i> (51) 3333-4444<br>
+            <i class="bi bi-whatsapp me-1" aria-hidden="true"></i> (51) 99999-8888<br>
+            <i class="bi bi-envelope me-1" aria-hidden="true"></i> contato@patafeliz.com.br
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h5>Navegação</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="acessorios.html">Acessórios</a></li>
+            <li><a href="racoes.html">Rações</a></li>
+            <li><a href="higiene.html">Higiene e Limpeza</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="cadastro.html">Agendamento</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Localização</h5>
+          <address>
+            Rua das Flores, 123<br>
+            Centro – Canoas/RS<br>
+            CEP 92010-000
+          </address>
+        </div>
+      </div>
+      <div class="linha-rodape">
+        <p>&copy; 2025 PataFeliz Petshop. Todos os direitos reservados.</p>
+        <p>Desenvolvido por Gustavo – Sistemas de Análise e Desenvolvimento – PUCRS</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Scripts customizados -->
+  <script src="scripts.js"></script>
+</body>
+</html>
