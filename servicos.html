@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serviços – PataFeliz Petshop</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+  <div id="relogio-banner" aria-live="polite" aria-label="Data e hora atuais">Carregando...</div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-patafeliz" aria-label="Menu principal de navegação">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><i class="bi bi-heart-fill me-2" aria-hidden="true"></i>PataFeliz</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+              aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menu de navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuPrincipal">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house" aria-hidden="true"></i> Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="acessorios.html"><i class="bi bi-bag" aria-hidden="true"></i> Acessórios</a></li>
+          <li class="nav-item"><a class="nav-link" href="racoes.html"><i class="bi bi-cup" aria-hidden="true"></i> Rações</a></li>
+          <li class="nav-item"><a class="nav-link" href="higiene.html"><i class="bi bi-droplet" aria-hidden="true"></i> Higiene</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="servicos.html"><i class="bi bi-scissors" aria-hidden="true"></i> Serviços</a></li>
+          <li class="nav-item"><a class="nav-link" href="cadastro.html"><i class="bi bi-calendar-check" aria-hidden="true"></i> Agendar</a></li>
+        </ul>
+        <button id="btn-contraste" class="btn btn-sm btn-outline-light ms-3" onclick="toggleAltoContraste()" aria-pressed="false" title="Ativar alto contraste">☀️ Alto Contraste</button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="conteudo-principal" class="container py-5">
+
+    <h1 class="titulo-secao">
+      <i class="bi bi-scissors me-2" aria-hidden="true"></i>Serviços de Banho e Tosa
+    </h1>
+    <p class="text-muted mb-4 texto-acessivel">
+      Serviços realizados por profissionais especializados. Utilizamos produtos de qualidade e seguros para a pele do seu pet.
+      Oferecemos tele-busca para sua comodidade!
+    </p>
+
+    <!-- SERVIÇO 1: BANHO SIMPLES -->
+    <section aria-labelledby="titulo-banho" class="card-servico">
+      <h2 id="titulo-banho">
+        <i class="bi bi-droplet-fill me-2 text-primary" aria-hidden="true"></i>Banho Simples
+      </h2>
+      <p class="texto-acessivel">
+        Lavagem com shampoo e condicionador adequados ao tipo de pelo, secagem com soprador, limpeza dos ouvidos,
+        corte das unhas e aplicação de perfume pet. Duração estimada: 1h a 1h30.
+      </p>
+      <h3 class="h6 fw-bold mb-2">O que inclui:</h3>
+      <ul class="list-unstyled mb-3">
+        <li><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>Shampoo e condicionador</li>
+        <li><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>Secagem com soprador e toalha</li>
+        <li><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>Limpeza dos ouvidos</li>
+        <li><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>Corte das unhas</li>
+        <li><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>Perfume pet</li>
+      </ul>
+      <div class="table-responsive">
+        <table class="table table-hover tabela-servico" aria-label="Preços do serviço de banho simples por porte do animal">
+          <thead>
+            <tr>
+              <th scope="col">Porte do Animal</th>
+              <th scope="col">Sem Tele-busca</th>
+              <th scope="col">Com Tele-busca</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Pequeno (até 10 kg)</td><td>R$ 45,00</td><td>R$ 65,00</td></tr>
+            <tr><td>Médio (10 a 20 kg)</td><td>R$ 65,00</td><td>R$ 90,00</td></tr>
+            <tr><td>Grande (acima de 20 kg)</td><td>R$ 90,00</td><td>R$ 120,00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <a href="cadastro.html" class="btn btn-patafeliz btn-sm" aria-label="Agendar banho simples">
+        <i class="bi bi-calendar-plus me-1" aria-hidden="true"></i>Agendar este serviço
+      </a>
+    </section>
+
+    <!-- SERVIÇO 2: TOSA HIGIÊNICA -->
+    <section aria-labelledby="titulo-tosa-hig" class="card-servico">
+      <h2 id="titulo-tosa-hig">
+        <i class="bi bi-scissors me-2 text-warning" aria-hidden="true"></i>Banho e Tosa Higiênica
+      </h2>
+      <p class="texto-acessivel">
+        Inclui tudo do banho simples acrescido da tosa higiênica nas regiões íntimas, entre os coxins, ao redor dos olhos
+        e ouvidos. Promove maior higiene sem alterar o visual do pelo. Duração estimada: 1h30 a 2h.
+      </p>
+      <h3 class="h6 fw-bold mb-2">O que inclui:</h3>
+      <ul class="list-unstyled mb-3">
+        <li><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>Tudo do Banho Simples</li>
+        <li><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>Tosa higiênica nas regiões íntimas</li>
+        <li><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>Aparamento entre os coxins</li>
+        <li><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>Arredamento ao redor dos olhos e ouvidos</li>
+      </ul>
+      <div class="table-responsive">
+        <table class="table table-hover tabela-servico" aria-label="Preços do serviço de banho e tosa higiênica por porte do animal">
+          <thead>
+            <tr>
+              <th scope="col">Porte do Animal</th>
+              <th scope="col">Sem Tele-busca</th>
+              <th scope="col">Com Tele-busca</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Pequeno (até 10 kg)</td><td>R$ 65,00</td><td>R$ 85,00</td></tr>
+            <tr><td>Médio (10 a 20 kg)</td><td>R$ 90,00</td><td>R$ 115,00</td></tr>
+            <tr><td>Grande (acima de 20 kg)</td><td>R$ 120,00</td><td>R$ 155,00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <a href="cadastro.html" class="btn btn-patafeliz btn-sm" aria-label="Agendar banho e tosa higiênica">
+        <i class="bi bi-calendar-plus me-1" aria-hidden="true"></i>Agendar este serviço
+      </a>
+    </section>
+
+    <!-- SERVIÇO 3: TOSA COMPLETA -->
+    <section aria-labelledby="titulo-tosa-comp" class="card-servico">
+      <h2 id="titulo-tosa-comp">
+        <i class="bi bi-stars me-2 text-danger" aria-hidden="true"></i>Banho e Tosa Completa
+      </h2>
+      <p class="texto-acessivel">
+        Serviço completo de estética pet com tosa completa e modelagem do pelo conforme o padrão da raça ou preferência
+        do tutor. Indicado para raças com pelo longo que necessitam de corte regular. Duração estimada: 2h a 3h.
+      </p>
+      <h3 class="h6 fw-bold mb-2">O que inclui:</h3>
+      <ul class="list-unstyled mb-3">
+        <li><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>Tudo do Banho e Tosa Higiênica</li>
+        <li><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>Tosa completa com modelagem</li>
+        <li><i class="bi bi-check-circle-fill text-success me-2" aria-hidden="true"></i>Corte conforme padrão da raça ou preferência do tutor</li>
+      </ul>
+      <div class="table-responsive">
+        <table class="table table-hover tabela-servico" aria-label="Preços do serviço de banho e tosa completa por porte do animal">
+          <thead>
+            <tr>
+              <th scope="col">Porte do Animal</th>
+              <th scope="col">Sem Tele-busca</th>
+              <th scope="col">Com Tele-busca</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Pequeno (até 10 kg)</td><td>R$ 85,00</td><td>R$ 110,00</td></tr>
+            <tr><td>Médio (10 a 20 kg)</td><td>R$ 120,00</td><td>R$ 150,00</td></tr>
+            <tr><td>Grande (acima de 20 kg)</td><td>R$ 160,00</td><td>R$ 200,00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <a href="cadastro.html" class="btn btn-patafeliz btn-sm" aria-label="Agendar banho e tosa completa">
+        <i class="bi bi-calendar-plus me-1" aria-hidden="true"></i>Agendar este serviço
+      </a>
+    </section>
+
+    <!-- INFO: TELE-BUSCA -->
+    <section aria-labelledby="titulo-telebusca" class="card-servico">
+      <h2 id="titulo-telebusca">
+        <i class="bi bi-truck me-2 text-success" aria-hidden="true"></i>Sobre o Serviço de Tele-busca
+      </h2>
+      <p class="texto-acessivel">
+        Nossa equipe busca o animal na sua residência, realiza o serviço contratado e devolve o pet no endereço indicado.
+      </p>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <ul class="list-unstyled texto-acessivel">
+            <li><i class="bi bi-geo-alt-fill text-danger me-2" aria-hidden="true"></i><strong>Área:</strong> Canoas e região metropolitana de Porto Alegre</li>
+            <li><i class="bi bi-clock-fill text-warning me-2" aria-hidden="true"></i><strong>Horário:</strong> Segunda a sábado, 08h00 às 17h00</li>
+            <li><i class="bi bi-calendar me-2" aria-hidden="true"></i><strong>Agendamento:</strong> Antecedência mínima de 24 horas</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h3 class="h6 fw-bold">Informações importantes:</h3>
+          <ul class="texto-acessivel">
+            <li>Animal deve estar com coleira e guia ao ser entregue.</li>
+            <li>Vacinas em dia são obrigatórias.</li>
+            <li>Cancelamentos com pelo menos 12 horas de antecedência.</li>
+            <li>Taxa de tele-busca já inclusa no preço "Com Tele-busca".</li>
+          </ul>
+        </div>
+      </div>
+      <a href="cadastro.html" class="btn btn-patafeliz mt-2" aria-label="Ir para o formulário de agendamento com tele-busca">
+        <i class="bi bi-calendar-check me-1" aria-hidden="true"></i>Agendar com Tele-busca
+      </a>
+    </section>
+
+    <div class="mt-2">
+      <a href="index.html" class="btn btn-patafeliz-verde" aria-label="Voltar para a página inicial">
+        <i class="bi bi-arrow-left me-1" aria-hidden="true"></i>Voltar para o Início
+      </a>
+    </div>
+
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>PataFeliz Petshop</h5>
+          <p><i class="bi bi-telephone me-1" aria-hidden="true"></i> (51) 3333-4444<br>
+             <i class="bi bi-envelope me-1" aria-hidden="true"></i> contato@patafeliz.com.br</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Navegação</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="acessorios.html">Acessórios</a></li>
+            <li><a href="racoes.html">Rações</a></li>
+            <li><a href="higiene.html">Higiene e Limpeza</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="cadastro.html">Agendamento</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Localização</h5>
+          <address>Rua das Flores, 123 – Centro<br>Canoas/RS – CEP 92010-000</address>
+        </div>
+      </div>
+      <div class="linha-rodape">
+        <p>&copy; 2025 PataFeliz Petshop. Todos os direitos reservados.</p>
+        <p>Desenvolvido por Gustavo – Sistemas de Análise e Desenvolvimento – Anhanguera</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>

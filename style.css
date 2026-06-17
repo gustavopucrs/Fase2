@@ -1,0 +1,321 @@
+/* ============================================================
+   style.css – PataFeliz Petshop | Fase 2
+   Autor: Gustavo
+   Descrição: Estilos globais do sistema web do petshop.
+              Complementa o Bootstrap com identidade visual
+              própria da marca PataFeliz.
+   ============================================================ */
+
+/* ---------- VARIÁVEIS DE COR ---------- */
+:root {
+  --verde-principal: #2e7d32;   /* Verde escuro – cor primária da marca */
+  --verde-claro:     #66bb6a;   /* Verde médio – hover e destaques       */
+  --laranja:         #f57c00;   /* Laranja – chamadas de ação (CTA)      */
+  --laranja-claro:   #ffa040;   /* Laranja claro – hover do CTA          */
+  --fundo-claro:     #f9fbe7;   /* Fundo suave esverdeado                */
+  --texto-escuro:    #1b1b1b;   /* Texto principal                       */
+  --cinza-rodape:    #263238;   /* Fundo do rodapé                       */
+}
+
+/* ---------- RESET E BASE ---------- */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: var(--fundo-claro);
+  color: var(--texto-escuro);
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- NAVBAR CUSTOMIZADA ---------- */
+.navbar-patafeliz {
+  background-color: var(--verde-principal);
+}
+
+/* Logo e nome no navbar */
+.navbar-patafeliz .navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff !important;
+  letter-spacing: 1px;
+}
+
+/* Links do menu */
+.navbar-patafeliz .nav-link {
+  color: #e8f5e9 !important;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navbar-patafeliz .nav-link:hover,
+.navbar-patafeliz .nav-link.active {
+  color: var(--laranja-claro) !important;
+}
+
+/* Botão hamburguer no mobile */
+.navbar-patafeliz .navbar-toggler {
+  border-color: rgba(255,255,255,0.4);
+}
+
+/* ---------- HERO / CARROSSEL ---------- */
+/* Altura mínima para imagens do carrossel */
+.carousel-item img {
+  height: 420px;
+  object-fit: cover;
+  filter: brightness(0.75);
+}
+
+/* Legenda sobre a imagem do carrossel */
+.carousel-caption h5 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+}
+
+.carousel-caption p {
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+/* ---------- SEÇÕES GERAIS ---------- */
+section {
+  padding: 48px 0;
+}
+
+/* Título de seção com linha decorativa */
+.titulo-secao {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--verde-principal);
+  border-left: 5px solid var(--laranja);
+  padding-left: 12px;
+  margin-bottom: 32px;
+}
+
+/* ---------- CARDS DE PRODUTO ---------- */
+.card-produto {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;
+}
+
+.card-produto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.16);
+}
+
+/* Imagem do card com altura fixa */
+.card-produto .card-img-top {
+  height: 210px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+/* Badge de categoria no card */
+.badge-categoria {
+  background-color: var(--verde-claro);
+  color: #fff;
+  font-size: 0.75rem;
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+
+/* Preço em destaque */
+.preco-produto {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--laranja);
+}
+
+/* ---------- BOTÕES ---------- */
+/* Botão primário laranja (CTA) */
+.btn-patafeliz {
+  background-color: var(--laranja);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 10px 24px;
+  transition: background-color 0.2s;
+}
+
+.btn-patafeliz:hover {
+  background-color: var(--laranja-claro);
+  color: #fff;
+}
+
+/* Botão secundário verde */
+.btn-patafeliz-verde {
+  background-color: var(--verde-principal);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 10px 24px;
+  transition: background-color 0.2s;
+}
+
+.btn-patafeliz-verde:hover {
+  background-color: var(--verde-claro);
+  color: #fff;
+}
+
+/* ---------- RELÓGIO / BANNER TEMPORAL ---------- */
+#relogio-banner {
+  background-color: var(--verde-principal);
+  color: #fff;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- CARDS DE SERVIÇO ---------- */
+.card-servico {
+  border-left: 5px solid var(--verde-claro);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  padding: 24px;
+  margin-bottom: 24px;
+  transition: border-color 0.2s;
+}
+
+.card-servico:hover {
+  border-left-color: var(--laranja);
+}
+
+.card-servico h4 {
+  color: var(--verde-principal);
+  font-weight: 700;
+}
+
+/* Tabela de preços de serviços */
+.tabela-servico th {
+  background-color: var(--verde-principal);
+  color: #fff;
+}
+
+/* ---------- FORMULÁRIO ---------- */
+/* Título do formulário */
+.form-titulo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--verde-principal);
+  margin-bottom: 8px;
+}
+
+/* Labels destacados */
+.form-label {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Campos do formulário com foco verde */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--verde-claro);
+  box-shadow: 0 0 0 0.2rem rgba(102, 187, 106, 0.25);
+}
+
+/* Separador de seção dentro do formulário */
+.form-secao {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 32px;
+  margin-bottom: 28px;
+}
+
+.form-secao-titulo {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--verde-principal);
+  border-bottom: 2px solid var(--verde-claro);
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+/* ---------- RODAPÉ ---------- */
+footer {
+  background-color: var(--cinza-rodape);
+  color: #cfd8dc;
+  padding: 40px 0 20px;
+}
+
+footer h5 {
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+footer a {
+  color: #b0bec5;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: var(--laranja-claro);
+}
+
+footer .linha-rodape {
+  border-top: 1px solid #37474f;
+  padding-top: 16px;
+  margin-top: 24px;
+  font-size: 0.85rem;
+  color: #90a4ae;
+  text-align: center;
+}
+
+/* ---------- ACESSIBILIDADE ---------- */
+/* Foco visível para navegação por teclado */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid var(--laranja);
+  outline-offset: 2px;
+}
+
+/* Texto de skip navigation (pular para conteúdo) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--laranja);
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 9999;
+  font-weight: 700;
+  border-radius: 0 0 8px 0;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Alto contraste para textos importantes */
+.texto-acessivel {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #1b1b1b;
+}
+
+/* ---------- RESPONSIVIDADE EXTRA ---------- */
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: 220px;
+  }
+
+  .carousel-caption h5 {
+    font-size: 1.1rem;
+  }
+
+  .titulo-secao {
+    font-size: 1.4rem;
+  }
+}
