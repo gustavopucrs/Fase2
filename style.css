@@ -269,21 +269,49 @@ footer .linha-rodape {
   text-align: center;
 }
 
-/* ---------- FIGURE / FIGCAPTION (AUDIODESCRIÇÃO) ---------- */
-/* Acessibilidade: exibe a descrição da imagem visivelmente abaixo de cada foto */
-figure {
-  margin: 0;
+/* ---------- AUDIODESCRIÇÃO (Acessibilidade – Aula 10) ---------- */
+/* Caixa de audiodescrição visível abaixo dos dados do produto,
+   com texto descritivo e botão de leitura em voz alta via SpeechSynthesis */
+
+.audiodesc-box {
+  background-color: #e8f5e9;
+  border-left: 4px solid var(--verde-claro);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  font-size: 0.78rem;
+  color: #444;
+  line-height: 1.5;
 }
 
-figcaption {
-  font-size: 0.78rem;
-  color: #555;
-  background-color: #f1f8e9;
-  padding: 4px 10px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+.audiodesc-texto {
+  display: block;
   font-style: italic;
-  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+/* Botão de audiodescrição */
+.btn-audiodesc {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--verde-principal);
+  background: #fff;
+  border: 1.5px solid var(--verde-principal);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-audiodesc:hover,
+.btn-audiodesc:focus {
+  background: var(--verde-principal);
+  color: #fff;
+  outline: none;
 }
 
 /* ---------- ACESSIBILIDADE ---------- */

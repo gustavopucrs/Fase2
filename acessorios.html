@@ -44,21 +44,14 @@
     </h1>
     <p class="text-muted mb-4 texto-acessivel">Conforto e diversão para o seu animal de estimação. Produtos selecionados com qualidade.</p>
 
-    <!-- CARDS DE PRODUTOS -->
     <div class="row g-4">
 
       <!-- PRODUTO 1 -->
       <div class="col-md-4">
         <article class="card card-produto h-100" aria-label="Produto: Cama Ortopédica para Cães">
-          <!-- Acessibilidade: figure + figcaption tornam a audiodescrição visível na tela -->
-          <figure class="mb-0">
-            <img src="https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?w=600&q=80"
-                 class="card-img-top"
-                 alt="Cama ortopédica cinza para cães de porte médio, com bordas acolchoadas e revestimento macio removível">
-            <figcaption class="text-center text-muted small px-2 py-1" style="background:#f1f8e9;">
-              Cama ortopédica cinza para cães de porte médio, com bordas acolchoadas e revestimento macio removível.
-            </figcaption>
-          </figure>
+          <img src="https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?w=600&q=80"
+               class="card-img-top"
+               alt="Cama ortopédica cinza para cães de porte médio, com bordas acolchoadas e revestimento macio removível">
           <div class="card-body d-flex flex-column">
             <span class="badge-categoria mb-2">Camas</span>
             <h2 class="card-title h5 fw-bold">Cama Ortopédica para Cães – Tamanho M</h2>
@@ -66,11 +59,18 @@
               Espuma de alta densidade, revestimento removível e lavável. Ideal para cães de médio porte,
               especialmente indicada para cães idosos ou com problemas articulares.
             </p>
-            <ul class="list-unstyled text-muted small mb-3">
+            <ul class="list-unstyled text-muted small mb-2">
               <li><i class="bi bi-rulers me-1" aria-hidden="true"></i> 60 cm × 45 cm × 10 cm</li>
               <li><i class="bi bi-palette me-1" aria-hidden="true"></i> Cor: Cinza</li>
             </ul>
-            <p class="preco-produto">R$ 89,90</p>
+            <!-- Acessibilidade: audiodescrição visível e botão de leitura em voz alta (Aula 10) -->
+            <div class="audiodesc-box">
+              <span class="audiodesc-texto">🖼️ <em>Audiodescrição:</em> Cama ortopédica cinza para cães de porte médio, com bordas acolchoadas e revestimento macio removível.</span>
+              <button class="btn-audiodesc" onclick="lerDescricao('Cama ortopédica cinza para cães de porte médio, com bordas acolchoadas e revestimento macio removível.')" aria-label="Ouvir audiodescrição da imagem da cama ortopédica">
+                🔊 Ouvir descrição
+              </button>
+            </div>
+            <p class="preco-produto mt-2">R$ 89,90</p>
             <a href="cadastro.html" class="btn btn-patafeliz btn-sm mt-auto" aria-label="Agendar compra da Cama Ortopédica">
               <i class="bi bi-cart-plus me-1" aria-hidden="true"></i>Tenho interesse
             </a>
@@ -81,14 +81,9 @@
       <!-- PRODUTO 2 -->
       <div class="col-md-4">
         <article class="card card-produto h-100" aria-label="Produto: Brinquedo Mordedor Osso de Borracha">
-          <figure class="mb-0">
-            <img src="https://images.unsplash.com/photo-1535294435445-d7249524ef2e?w=600&q=80"
-                 class="card-img-top"
-                 alt="Brinquedo mordedor laranja em formato de osso de borracha natural atóxica para cães de pequeno e médio porte">
-            <figcaption class="text-center text-muted small px-2 py-1" style="background:#f1f8e9;">
-              Brinquedo mordedor laranja em formato de osso de borracha natural atóxica para cães de pequeno e médio porte.
-            </figcaption>
-          </figure>
+          <img src="https://images.unsplash.com/photo-1535294435445-d7249524ef2e?w=600&q=80"
+               class="card-img-top"
+               alt="Brinquedo mordedor laranja em formato de osso de borracha natural atóxica para cães de pequeno e médio porte">
           <div class="card-body d-flex flex-column">
             <span class="badge-categoria mb-2">Brinquedos</span>
             <h2 class="card-title h5 fw-bold">Brinquedo Mordedor – Osso de Borracha</h2>
@@ -96,11 +91,18 @@
               Borracha natural atóxica com apito interno. Auxilia na limpeza dos dentes e fortalece as gengivas.
               Indicado para cães de pequeno e médio porte.
             </p>
-            <ul class="list-unstyled text-muted small mb-3">
+            <ul class="list-unstyled text-muted small mb-2">
               <li><i class="bi bi-box me-1" aria-hidden="true"></i> Material: Borracha natural atóxica</li>
               <li><i class="bi bi-palette me-1" aria-hidden="true"></i> Cor: Laranja</li>
             </ul>
-            <p class="preco-produto">R$ 24,90</p>
+            <!-- Acessibilidade: audiodescrição visível e botão de leitura em voz alta (Aula 10) -->
+            <div class="audiodesc-box">
+              <span class="audiodesc-texto">🖼️ <em>Audiodescrição:</em> Brinquedo mordedor laranja em formato de osso de borracha natural atóxica para cães de pequeno e médio porte.</span>
+              <button class="btn-audiodesc" onclick="lerDescricao('Brinquedo mordedor laranja em formato de osso de borracha natural atóxica para cães de pequeno e médio porte.')" aria-label="Ouvir audiodescrição do brinquedo mordedor">
+                🔊 Ouvir descrição
+              </button>
+            </div>
+            <p class="preco-produto mt-2">R$ 24,90</p>
             <a href="cadastro.html" class="btn btn-patafeliz btn-sm mt-auto" aria-label="Agendar compra do Brinquedo Mordedor">
               <i class="bi bi-cart-plus me-1" aria-hidden="true"></i>Tenho interesse
             </a>
@@ -111,14 +113,9 @@
       <!-- PRODUTO 3 -->
       <div class="col-md-4">
         <article class="card card-produto h-100" aria-label="Produto: Capa de Chuva Impermeável para Cães">
-          <figure class="mb-0">
-            <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=600&q=80"
-                 class="card-img-top"
-                 alt="Capa de chuva impermeável amarela para cães, com capuz ajustável e abertura para guia">
-            <figcaption class="text-center text-muted small px-2 py-1" style="background:#f1f8e9;">
-              Capa de chuva impermeável amarela para cães, com capuz ajustável e abertura para guia.
-            </figcaption>
-          </figure>
+          <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=600&q=80"
+               class="card-img-top"
+               alt="Capa de chuva impermeável amarela para cães, com capuz ajustável e abertura para guia">
           <div class="card-body d-flex flex-column">
             <span class="badge-categoria mb-2">Roupas</span>
             <h2 class="card-title h5 fw-bold">Capa de Chuva Impermeável</h2>
@@ -126,11 +123,18 @@
               Material leve e impermeável com capuz ajustável e velcro. Abertura para guia.
               Mantém seu pet seco e confortável nos dias chuvosos.
             </p>
-            <ul class="list-unstyled text-muted small mb-3">
+            <ul class="list-unstyled text-muted small mb-2">
               <li><i class="bi bi-tag me-1" aria-hidden="true"></i> Tamanhos: P, M, G e GG</li>
               <li><i class="bi bi-palette me-1" aria-hidden="true"></i> Cor: Amarela</li>
             </ul>
-            <p class="preco-produto">R$ 49,90</p>
+            <!-- Acessibilidade: audiodescrição visível e botão de leitura em voz alta (Aula 10) -->
+            <div class="audiodesc-box">
+              <span class="audiodesc-texto">🖼️ <em>Audiodescrição:</em> Capa de chuva impermeável amarela para cães, com capuz ajustável e abertura para guia.</span>
+              <button class="btn-audiodesc" onclick="lerDescricao('Capa de chuva impermeável amarela para cães, com capuz ajustável e abertura para guia.')" aria-label="Ouvir audiodescrição da capa de chuva">
+                🔊 Ouvir descrição
+              </button>
+            </div>
+            <p class="preco-produto mt-2">R$ 49,90</p>
             <a href="cadastro.html" class="btn btn-patafeliz btn-sm mt-auto" aria-label="Agendar compra da Capa de Chuva">
               <i class="bi bi-cart-plus me-1" aria-hidden="true"></i>Tenho interesse
             </a>
@@ -148,7 +152,6 @@
 
   </main>
 
-  <!-- RODAPÉ -->
   <footer role="contentinfo">
     <div class="container">
       <div class="row">
