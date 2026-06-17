@@ -269,6 +269,23 @@ footer .linha-rodape {
   text-align: center;
 }
 
+/* ---------- FIGURE / FIGCAPTION (AUDIODESCRIÇÃO) ---------- */
+/* Acessibilidade: exibe a descrição da imagem visivelmente abaixo de cada foto */
+figure {
+  margin: 0;
+}
+
+figcaption {
+  font-size: 0.78rem;
+  color: #555;
+  background-color: #f1f8e9;
+  padding: 4px 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  font-style: italic;
+  line-height: 1.4;
+}
+
 /* ---------- ACESSIBILIDADE ---------- */
 /* Foco visível para navegação por teclado */
 a:focus,
